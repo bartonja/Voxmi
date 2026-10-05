@@ -1,0 +1,19 @@
+services:
+  db:
+    image: postgres:17
+    container_name: voxmi_postgres
+    restart: unless-stopped
+
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+    ports:
+      - "${POSTGRES_PORT}:5435"
+
+    volumes:
+      - voxmi_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  voxmi_postgres_data:
